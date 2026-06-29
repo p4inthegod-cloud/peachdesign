@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <title>PE/ACH Design Studio — рекламный дизайн для брендов</title>
+  <meta name="description" content="Студия рекламного дизайна PE/ACH. Рекламный дизайн для брендов, которые невозможно игнорировать.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <meta property="og:title" content="PE/ACH Design Studio">
+  <meta property="og:description" content="Рекламный дизайн для брендов, которые невозможно игнорировать.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Bitter:ital,wght@0,400;0,500;0,700;0,900;1,700&family=Oswald:wght@400;500;600;700&family=Caveat:wght@700&family=Fragment+Mono&display=swap" rel="stylesheet">
+  <script src="image-slot.js"></script>
+  <style>
+    html,body{margin:0;padding:0;background:#021c15;}
+    html{scroll-snap-type:y proximity;scroll-behavior:smooth;}
+    *{box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+    ::selection{background:#EF5130;color:#fff;}
+    @keyframes logoFloat{0%,100%{transform:scale(1.02) translateY(0)}50%{transform:scale(1.02) translateY(-12px)}}
+    .logo-float{animation:logoFloat 6s ease-in-out infinite;will-change:transform;}
+    @keyframes peachMarquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    .marquee-track{animation:peachMarquee 22s linear infinite;will-change:transform;}
+    #top{scroll-snap-align:start;}
+    #creative{scroll-snap-align:start;}
+    @media (max-width:760px){
+      section[data-screen-label]{ padding-top:64px !important; padding-bottom:64px !important; padding-left:16px !important; padding-right:16px !important; }
+      #top{ padding:0 !important; }
+      .hero-card{ height:100dvh !important; min-height:100dvh !important; border-radius:0 !important; background:#04362a !important; }
+      .hero-card>img{ object-fit:cover !important; object-position:center 52% !important; }
+      .hero-logo .lg-name{ font-size:46px !important; }
+      .hero-logo .lg-sub{ font-size:12px !important; letter-spacing:0.32em !important; }
+      .slo-left{ top:auto !important; bottom:118px !important; left:20px !important; right:auto !important; width:auto !important; max-width:82% !important; font-size:16px !important; color:#fff !important; text-shadow:0 1px 14px rgba(0,0,0,0.6); }
+      .slo-left span{ color:#fff !important; }
+      .slo-right{ display:none !important; }
+      .topbar{ padding:14px 16px !important; }
+      .tb-contact-txt{ display:none !important; }
+      .hero-tagline{ bottom:120px !important; font-size:13px !important; letter-spacing:0.1em !important; width:88% !important; max-width:88% !important; white-space:normal !important; }
+      .hero-cta{ bottom:56px !important; padding:15px 30px !important; }
+      .carousel-wrap{ transform:scale(0.56) !important; height:340px !important; margin-top:24px !important; }
+      .marquee-sec{ padding:9px 0 !important; }
+      .marquee-track{ gap:40px !important; }
+      .marquee-track span{ font-size:12px !important; }
+      .sec-h{ font-size:30px !important; }
+      .about-h{ font-size:30px !important; }
+      #contact{ padding:72px 16px 80px !important; }
+      .cta-row{ gap:48px !important; }
+      footer{ padding:48px 20px 40px !important; }
+      .frow{ flex-direction:column !important; gap:14px !important; margin-bottom:40px !important; }
+      .frow p{ text-align:left !important; max-width:100% !important; }
+      .fnav{ gap:20px !important; }
+      .proc-row{ grid-template-columns:1fr !important; gap:10px !important; padding:28px 0 !important; }
+      #manifest{ padding:64px 16px !important; }
+      .mani-wrap{ flex-direction:column !important; align-items:stretch !important; min-height:auto !important; gap:22px !important; }
+      .mani-head{ flex:none !important; min-width:0 !important; }
+      .mani-head h2{ font-size:32px !important; }
+      .mani-img{ width:100% !important; align-self:center !important; }
+      .mani-img image-slot{ width:100% !important; height:62vw !important; }
+      .mani-bg{ align-items:flex-end !important; }
+      .mani-bg>div{ line-height:0.7 !important; padding-bottom:6vw !important; }
+      .mani-bg span{ font-size:25vw !important; }
+    }
+  </style>
+</helmet>
+<div style="background:#021c15;min-height:100vh;width:100%;overflow-x:hidden;font-family:'Inter',sans-serif;">
+
+  <header class="topbar" data-screen-label="Top bar" style="position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:20px clamp(18px,4vw,48px);background:linear-gradient(180deg,rgba(2,22,16,0.78) 0%,rgba(2,22,16,0) 100%);">
+    <button class="tb-contact" onClick="{{ contact }}" style="display:inline-flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;color:#fff;font-family:'Inter',sans-serif;font-weight:600;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;padding:0;">
+      <span style="font-size:17px;line-height:0;color:#EF5130;">+</span><span class="tb-contact-txt">Contact Us</span>
+    </button>
+    <button onClick="{{ navHome }}" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:none;border:none;cursor:pointer;color:#fff;font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(19px,2.1vw,26px);letter-spacing:0.34em;text-transform:uppercase;padding:0;white-space:nowrap;">PE/ACH</button>
+    <button onClick="{{ toggleMenu }}" style="display:inline-flex;align-items:center;gap:10px;background:none;border:1px solid rgba(255,255,255,0.55);border-radius:9px;cursor:pointer;color:#fff;font-family:'Inter',sans-serif;font-weight:600;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;padding:9px 15px;transition:border-color .25s ease,color .25s ease;" style-hover="border-color:#EF5130;color:#EF5130">
+      <span style="display:flex;flex-direction:column;gap:4px;"><span style="width:15px;height:1.5px;background:currentColor;display:block;"></span><span style="width:15px;height:1.5px;background:currentColor;display:block;"></span></span>Menu
+    </button>
+  </header>
+
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:70;background:rgba(2,20,15,0.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
+      <button onClick="{{ closeMenu }}" style="position:absolute;top:22px;right:clamp(18px,4vw,48px);background:none;border:none;cursor:pointer;color:#fff;font-family:'Inter',sans-serif;font-size:34px;line-height:1;padding:4px;">×</button>
+      <button onClick="{{ navHome }}" style="background:none;border:none;cursor:pointer;color:#fff;font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(34px,6vw,58px);letter-spacing:0.02em;text-transform:uppercase;padding:8px 0;transition:color .2s ease;" style-hover="color:#EF5130">Home</button>
+      <button onClick="{{ navAbout }}" style="background:none;border:none;cursor:pointer;color:#fff;font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(34px,6vw,58px);letter-spacing:0.02em;text-transform:uppercase;padding:8px 0;transition:color .2s ease;" style-hover="color:#EF5130">About</button>
+      <button onClick="{{ navProjects }}" style="background:none;border:none;cursor:pointer;color:#fff;font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(34px,6vw,58px);letter-spacing:0.02em;text-transform:uppercase;padding:8px 0;transition:color .2s ease;" style-hover="color:#EF5130">Projects</button>
+      <button onClick="{{ navJournal }}" style="background:none;border:none;cursor:pointer;color:#fff;font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(34px,6vw,58px);letter-spacing:0.02em;text-transform:uppercase;padding:8px 0;transition:color .2s ease;" style-hover="color:#EF5130">Journal</button>
+      <button onClick="{{ contact }}" style="margin-top:26px;background:#EF5130;border:none;cursor:pointer;color:#0d0d0d;font-family:'Bitter',serif;font-weight:600;font-size:16px;line-height:1;text-transform:uppercase;letter-spacing:0.02em;padding:16px 34px;border-radius:999px;">Обсудить проект</button>
+      <p style="margin:30px 0 0;font-family:'Fragment Mono',monospace;font-size:12px;letter-spacing:0.1em;color:rgba(255,255,255,0.45);">hello@peachdesign.art</p>
+    </div>
+  </sc-if>
+
+  <section id="top" data-screen-label="Hero" style="position:relative;background:#021c15;padding:10px;">
+    <div class="hero-card" style="position:relative;width:100%;height:calc(100dvh - 20px);border-radius:55px;overflow:hidden;">
+      <img src="assets/peach-logo-badge-green.png" alt="PEACH Design Studio" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 62%;display:block;">
+      <div class="hero-logo" style="position:absolute;top:40px;left:44px;display:none;">
+        <img src="assets/peach-logo-badge.png" alt="PEACH" style="width:300px;height:auto;display:block;">
+      </div>
+      <p class="slo-left" style="display:none;position:absolute;left:52px;top:48%;width:300px;margin:0;color:rgba(0,0,0,0.5);font-family:'Inter',sans-serif;font-weight:700;font-size:19px;line-height:1.3;letter-spacing:0.005em;text-transform:uppercase;">РЕКЛАМНЫЙ ДИЗАЙН ДЛЯ БРЕНДОВ, КОТОРЫЕ <span style="color:#000;font-weight:800;">НЕВОЗМОЖНО ИГНОРИРОВАТЬ.</span></p>
+      <p class="slo-right" style="display:none;position:absolute;right:92px;top:48%;width:230px;margin:0;text-align:right;color:#000;font-family:'Inter',sans-serif;font-weight:800;font-size:19px;line-height:1.3;letter-spacing:0.005em;text-transform:uppercase;">СТУДИЯ РЕКЛАМНОГО ДИЗАЙНА</p>
+      <p class="hero-tagline" style="position:absolute;left:50%;bottom:150px;transform:translateX(-50%);margin:0;width:max-content;max-width:90%;text-align:center;color:#fff;text-shadow:0 1px 20px rgba(0,0,0,0.55);font-family:'Inter',sans-serif;font-weight:700;font-size:18px;letter-spacing:0.12em;line-height:1;text-transform:uppercase;z-index:6;">Рекламный дизайн для брендов, которые невозможно игнорировать</p>
+      <button class="hero-cta" onClick="{{ contact }}" style="position:absolute;left:50%;bottom:50px;transform:translateX(-50%);background:#EF5130;border:none;cursor:pointer;color:#0d0d0d;font-family:'Bitter',serif;font-weight:600;font-size:15px;line-height:1;text-transform:uppercase;letter-spacing:0.02em;padding:16px 34px;border-radius:999px;z-index:6;transition:transform .25s ease,box-shadow .25s ease;box-shadow:0 10px 30px rgba(0,0,0,0.35);" style-hover="transform:translateX(-50%) scale(1.05)">Обсудить проект</button>
+    </div>
+  </section>
+
+  <section class="marquee-sec" data-screen-label="Маркизой" style="background:linear-gradient(180deg,#021c15 0%,#06402f 50%,#021c15 100%);border-top:1px solid rgba(239,81,48,0.5);border-bottom:1px solid rgba(239,81,48,0.5);padding:11px 0;overflow:hidden;position:relative;">
+    <div class="marquee-track" style="display:flex;align-items:center;gap:54px;width:max-content;white-space:nowrap;">
+      <span style="font-family:'Inter',sans-serif;font-weight:500;font-size:clamp(13px,1.5vw,18px);line-height:1;letter-spacing:0.22em;text-transform:uppercase;color:#EF5130;">Inspired by the great and the fashionable</span>
+      <span style="font-family:'Inter',sans-serif;font-weight:500;font-size:clamp(13px,1.5vw,18px);line-height:1;letter-spacing:0.22em;text-transform:uppercase;color:#EF5130;">Inspired by the great and the fashionable</span>
+      <span style="font-family:'Inter',sans-serif;font-weight:500;font-size:clamp(13px,1.5vw,18px);line-height:1;letter-spacing:0.22em;text-transform:uppercase;color:#EF5130;">Inspired by the great and the fashionable</span>
+      <span style="font-family:'Inter',sans-serif;font-weight:500;font-size:clamp(13px,1.5vw,18px);line-height:1;letter-spacing:0.22em;text-transform:uppercase;color:#EF5130;">Inspired by the great and the fashionable</span>
+      <span style="font-family:'Inter',sans-serif;font-weight:500;font-size:clamp(13px,1.5vw,18px);line-height:1;letter-spacing:0.22em;text-transform:uppercase;color:#EF5130;">Inspired by the great and the fashionable</span>
+      <span style="font-family:'Inter',sans-serif;font-weight:500;font-size:clamp(13px,1.5vw,18px);line-height:1;letter-spacing:0.22em;text-transform:uppercase;color:#EF5130;">Inspired by the great and the fashionable</span>
+    </div>
+  </section>
+
+  <section id="creative" data-screen-label="Креатив" style="position:relative;background:radial-gradient(85% 55% at 50% -4%,rgba(239,81,48,0.13) 0%,rgba(239,81,48,0) 60%),linear-gradient(180deg,#05382a 0%,#021c15 100%);padding:120px 24px 110px;display:flex;flex-direction:column;align-items:center;">
+    <div style="display:inline-flex;align-items:center;gap:9px;margin:0 0 24px;">
+      <span style="font-family:'Fragment Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#0d0d0d;background:#EF5130;padding:5px 9px;border-radius:5px;text-transform:uppercase;line-height:1;">SEC&nbsp;01</span>
+      <span style="font-family:'Fragment Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#EF5130;text-transform:uppercase;line-height:1;">ГЛАВНОЕ&nbsp;НАПРАВЛЕНИЕ</span>
+    </div>
+    <h2 class="sec-h" style="margin:0 0 22px;max-width:900px;text-align:center;color:#fff;font-family:'Oswald',sans-serif;font-weight:700;font-size:54px;letter-spacing:0.01em;line-height:1.04;text-transform:uppercase;">Креатив, который захватывает внимание</h2>
+    <p style="margin:0;max-width:600px;text-align:center;color:rgba(255,255,255,0.72);font-weight:400;font-size:18px;line-height:1.5;">Большинство реклам малого бизнеса пролистывают за полсекунды. Мы делаем визуал, который тормозит скролл и ведёт к заявке.</p>
+
+    <div class="carousel-wrap" onMouseEnter="{{ onEnter }}" onMouseLeave="{{ onLeave }}" style="position:relative;width:100%;max-width:1120px;height:580px;margin:60px auto 0;transform-origin:center center;display:flex;align-items:center;justify-content:center;overflow:visible;">
+      <sc-for list="{{ cards }}" as="card" hint-placeholder-count="5">
+        <div onClick="{{ card.onClick }}" style="{{ card.style }}"></div>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;gap:10px;align-items:center;justify-content:center;margin-top:36px;">
+      <sc-for list="{{ dots }}" as="dot" hint-placeholder-count="5">
+        <button onClick="{{ dot.onClick }}" style="{{ dot.style }}"></button>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:96px;width:100%;max-width:960px;">
+      <div onMouseEnter="{{ svcEnter0 }}" onMouseLeave="{{ svcLeave }}" style="position:relative;overflow:hidden;width:300px;min-height:200px;border-radius:27px;background:#0b4131;border:0.5px solid rgba(239,81,48,0.16);padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:12px;transition:transform .4s ease,border-color .4s ease,box-shadow .4s ease;" style-hover="transform:translateY(-4px);border-color:rgba(239,81,48,0.45);box-shadow:0 16px 44px rgba(0,0,0,0.5)">
+        <div style="{{ sheen0 }}"></div>
+        <h3 style="position:relative;margin:0;color:#fff;font-weight:600;font-size:32px;letter-spacing:-0.03em;line-height:1;">Web design</h3>
+        <p style="position:relative;margin:0;color:rgba(255,255,255,0.78);font-weight:500;font-size:15px;letter-spacing:-0.01em;line-height:1.3;">Сайты, которые продают, а не просто существуют.</p>
+      </div>
+      <div onMouseEnter="{{ svcEnter1 }}" onMouseLeave="{{ svcLeave }}" style="position:relative;overflow:hidden;width:300px;min-height:200px;border-radius:27px;background:#0b4131;border:0.5px solid rgba(239,81,48,0.16);padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:12px;transition:transform .4s ease,border-color .4s ease,box-shadow .4s ease;" style-hover="transform:translateY(-4px);border-color:rgba(239,81,48,0.45);box-shadow:0 16px 44px rgba(0,0,0,0.5)">
+        <div style="{{ sheen1 }}"></div>
+        <h3 style="position:relative;margin:0;color:#fff;font-weight:600;font-size:32px;letter-spacing:-0.03em;line-height:1;">Digital design</h3>
+        <p style="position:relative;margin:0;color:rgba(255,255,255,0.78);font-weight:500;font-size:15px;letter-spacing:-0.01em;line-height:1.3;">Визуальная система бренда: от лого до соцсетей.</p>
+      </div>
+      <div onMouseEnter="{{ svcEnter2 }}" onMouseLeave="{{ svcLeave }}" style="position:relative;overflow:hidden;width:300px;min-height:200px;border-radius:27px;background:#0b4131;border:0.5px solid rgba(239,81,48,0.16);padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:12px;transition:transform .4s ease,border-color .4s ease,box-shadow .4s ease;" style-hover="transform:translateY(-4px);border-color:rgba(239,81,48,0.45);box-shadow:0 16px 44px rgba(0,0,0,0.5)">
+        <div style="{{ sheen2 }}"></div>
+        <h3 style="position:relative;margin:0;color:#fff;font-weight:600;font-size:32px;letter-spacing:-0.03em;line-height:1;">Консалтинг</h3>
+        <p style="position:relative;margin:0;color:rgba(255,255,255,0.78);font-weight:500;font-size:15px;letter-spacing:-0.01em;line-height:1.3;">Разбор твоей текущей рекламы: что мешает продавать.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" data-screen-label="About" style="background:linear-gradient(180deg,#021c15 0%,#053829 100%);padding:120px 24px;display:flex;justify-content:center;">
+    <div style="width:100%;max-width:1080px;">
+      <div style="display:inline-flex;align-items:center;gap:9px;margin:0 0 40px;">
+        <span style="font-family:'Fragment Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#0d0d0d;background:#EF5130;padding:5px 9px;border-radius:5px;text-transform:uppercase;line-height:1;">SEC&nbsp;02</span>
+        <span style="font-family:'Fragment Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#EF5130;text-transform:uppercase;line-height:1;">О&nbsp;СТУДИИ</span>
+      </div>
+      <div style="display:flex;gap:64px;align-items:flex-start;flex-wrap:wrap;">
+        <h2 class="about-h" style="flex:1 1 460px;min-width:300px;margin:0;color:#fff;font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(40px,5vw,66px);letter-spacing:0.005em;line-height:0.98;text-transform:uppercase;">Студия, где дизайн <span style="color:#EF5130;">работает на&nbsp;продажи</span></h2>
+        <div style="flex:1 1 360px;min-width:280px;border-top:1px solid rgba(239,81,48,0.45);padding-top:30px;">
+          <p style="margin:0 0 20px;color:rgba(255,255,255,0.82);font-weight:400;font-size:19px;line-height:1.55;">Каждый кадр, макет и баннер решает конкретную задачу бизнеса — а не просто украшает ленту.</p>
+          <p style="margin:0;color:rgba(255,255,255,0.58);font-weight:400;font-size:16px;line-height:1.6;">Меньше шума — больше результата. Всё внимание уходит в проекты клиентов, и наше портфолио измеряется их выручкой, заявками и узнаваемостью.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cases" data-screen-label="Кейсы" style="position:relative;background:radial-gradient(72% 46% at 50% 6%,rgba(239,81,48,0.11) 0%,rgba(239,81,48,0) 56%),linear-gradient(180deg,#053829 0%,#021c15 60%,#021c15 100%);padding:110px 24px 120px;display:flex;flex-direction:column;align-items:center;">
+    <div style="display:inline-flex;align-items:center;gap:9px;margin:0 0 24px;">
+      <span style="font-family:'Fragment Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#0d0d0d;background:#EF5130;padding:5px 9px;border-radius:5px;text-transform:uppercase;line-height:1;">SEC&nbsp;03</span>
+      <span style="font-family:'Fragment Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#EF5130;text-transform:uppercase;line-height:1;">ЧТО&nbsp;ТАКОЕ&nbsp;РЕКЛАМНЫЙ&nbsp;ДИЗАЙН</span>
+    </div>
+    <h2 class="cases-lead" style="margin:0 0 28px;max-width:1040px;text-align:center;font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(38px,5.8vw,74px);letter-spacing:0.004em;line-height:1.0;">
+      <span style="color:#fff;">Мы не делаем рекламу.<br>Мы делаем так, чтобы бренд </span><span style="background:linear-gradient(98deg,#EF5130 0%,#FF7E45 52%,#F4B14A 100%);-webkit-background-clip:text;background-clip:text;color:transparent;">хотелось купить.</span>
+    </h2>
+    <p style="margin:0 0 80px;max-width:660px;text-align:center;color:rgba(255,255,255,0.72);font-weight:400;font-size:18px;line-height:1.55;">Человек видит твой профиль доли секунды и сразу решает: дорого или дёшево, доверять или нет. Рекламный дизайн управляет этим впечатлением — и превращает внимание в покупки.</p>
+
+    <div style="width:100%;max-width:980px;display:flex;flex-direction:column;">
+
+      <div style="padding:52px 0;border-top:1px solid rgba(255,255,255,0.1);">
+        <span style="font-family:'Fragment Mono',monospace;font-size:14px;color:rgba(255,255,255,0.4);letter-spacing:0.1em;display:block;margin-bottom:16px;">01</span>
+        <p style="margin:0 0 16px;font-weight:800;font-size:clamp(28px,4.4vw,52px);letter-spacing:-0.03em;line-height:1.08;background:linear-gradient(98deg,#EF5130 0%,#FF7E45 52%,#F4B14A 100%);-webkit-background-clip:text;background-clip:text;color:transparent;">Бренд выглядит дороже</p>
+        <p style="margin:0 0 18px;max-width:640px;color:rgba(255,255,255,0.66);font-size:clamp(16px,1.8vw,19px);line-height:1.5;">Картинка говорит о цене и качестве раньше любого текста. Сильный визуал поднимает восприятие — и за продукт уже не жалко заплатить больше.</p>
+        <p style="margin:0;color:#EF5130;font-weight:700;font-size:clamp(16px,1.7vw,19px);letter-spacing:0.01em;">≈ +40% к&nbsp;восприятию ценности бренда</p>
+      </div>
+
+      <div style="padding:52px 0;border-top:1px solid rgba(255,255,255,0.1);">
+        <span style="font-family:'Fragment Mono',monospace;font-size:14px;color:rgba(255,255,255,0.4);letter-spacing:0.1em;display:block;margin-bottom:16px;">02</span>
+        <p style="margin:0 0 16px;font-weight:800;font-size:clamp(28px,4.4vw,52px);letter-spacing:-0.03em;line-height:1.08;background:linear-gradient(98deg,#EF5130 0%,#FF7E45 52%,#F4B14A 100%);-webkit-background-clip:text;background-clip:text;color:transparent;">Тебя замечают и&nbsp;запоминают</p>
+        <p style="margin:0 0 18px;max-width:640px;color:rgba(255,255,255,0.66);font-size:clamp(16px,1.8vw,19px);line-height:1.5;">В ленте среди тысяч похожих профилей цельный, узнаваемый стиль цепляет взгляд и остаётся в памяти — к тебе возвращаются.</p>
+        <p style="margin:0;color:#EF5130;font-weight:700;font-size:clamp(16px,1.7vw,19px);letter-spacing:0.01em;">≈ ×2 к&nbsp;узнаваемости бренда</p>
+      </div>
+
+      <div style="padding:52px 0;border-top:1px solid rgba(255,255,255,0.1);border-bottom:1px solid rgba(255,255,255,0.1);">
+        <span style="font-family:'Fragment Mono',monospace;font-size:14px;color:rgba(255,255,255,0.4);letter-spacing:0.1em;display:block;margin-bottom:16px;">03</span>
+        <p style="margin:0 0 16px;font-weight:800;font-size:clamp(28px,4.4vw,52px);letter-spacing:-0.03em;line-height:1.08;background:linear-gradient(98deg,#EF5130 0%,#FF7E45 52%,#F4B14A 100%);-webkit-background-clip:text;background-clip:text;color:transparent;">Внимание превращается в&nbsp;продажи</p>
+        <p style="margin:0 0 18px;max-width:640px;color:rgba(255,255,255,0.66);font-size:clamp(16px,1.8vw,19px);line-height:1.5;">Когда бренду доверяют и его помнят — покупают чаще и охотнее. Дизайн ведёт человека от «просто посмотрел» к покупке.</p>
+        <p style="margin:0;color:#EF5130;font-weight:700;font-size:clamp(16px,1.7vw,19px);letter-spacing:0.01em;">≈ +30% к&nbsp;продажам</p>
+      </div>
+
+    </div>
+
+    <p style="margin:48px 0 0;max-width:640px;text-align:center;color:rgba(255,255,255,0.4);font-family:'Fragment Mono',monospace;font-size:12px;line-height:1.5;letter-spacing:0.02em;">* Усреднённые ориентиры по индустрии. Не гарантия — реальный эффект зависит от продукта, оффера и площадки.</p>
+  </section>
+
+  <section id="process" data-screen-label="Как мы работаем" style="background:linear-gradient(180deg,#021c15 0%,#05382a 100%);padding:110px 24px 120px;display:flex;flex-direction:column;align-items:center;">
+    <div style="display:inline-flex;align-items:center;gap:9px;margin:0 0 24px;">
+      <span style="font-family:'Fragment Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#0d0d0d;background:#EF5130;padding:5px 9px;border-radius:5px;text-transform:uppercase;line-height:1;">SEC&nbsp;04</span>
+      <span style="font-family:'Fragment Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#EF5130;text-transform:uppercase;line-height:1;">ПРОЦЕСС</span>
+    </div>
+    <h2 class="sec-h" style="margin:0 0 22px;text-align:center;color:#fff;font-family:'Oswald',sans-serif;font-weight:700;font-size:54px;letter-spacing:0.01em;line-height:1.04;text-transform:uppercase;">Как мы работаем</h2>
+    <p style="margin:0 0 64px;max-width:600px;text-align:center;color:rgba(255,255,255,0.72);font-weight:400;font-size:18px;line-height:1.5;">Три шага — и ты точно знаешь, что получишь. Без сюрпризов, без слитого бюджета.</p>
+
+    <div style="width:100%;max-width:1000px;display:flex;flex-direction:column;">
+      <div class="proc-row" style="display:grid;grid-template-columns:130px 1.05fr 1.5fr;gap:32px;align-items:center;padding:42px 0;border-top:1px solid rgba(255,255,255,0.12);transition:background .3s ease;" style-hover="background:rgba(239,81,48,0.05)">
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <span style="font-family:'Fragment Mono',monospace;font-size:11px;letter-spacing:0.18em;color:rgba(255,255,255,0.4);text-transform:uppercase;">Шаг</span>
+          <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:64px;line-height:0.82;color:#EF5130;">01</span>
+        </div>
+        <h3 style="margin:0;color:#fff;font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(22px,2.4vw,30px);text-transform:uppercase;letter-spacing:0.01em;line-height:1.05;">Бриф и стратегия</h3>
+        <p style="margin:0;color:rgba(255,255,255,0.66);font-size:16px;line-height:1.55;">Разбираем продукт, аудиторию и цель. Договариваемся о результате на берегу.</p>
+      </div>
+      <div class="proc-row" style="display:grid;grid-template-columns:130px 1.05fr 1.5fr;gap:32px;align-items:center;padding:42px 0;border-top:1px solid rgba(255,255,255,0.12);transition:background .3s ease;" style-hover="background:rgba(239,81,48,0.05)">
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <span style="font-family:'Fragment Mono',monospace;font-size:11px;letter-spacing:0.18em;color:rgba(255,255,255,0.4);text-transform:uppercase;">Шаг</span>
+          <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:64px;line-height:0.82;color:#EF5130;">02</span>
+        </div>
+        <h3 style="margin:0;color:#fff;font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(22px,2.4vw,30px);text-transform:uppercase;letter-spacing:0.01em;line-height:1.05;">Дизайн и итерации</h3>
+        <p style="margin:0;color:rgba(255,255,255,0.66);font-size:16px;line-height:1.55;">Концепты, правки и финал. Ты видишь прогресс и влияешь на каждый шаг.</p>
+      </div>
+      <div class="proc-row" style="display:grid;grid-template-columns:130px 1.05fr 1.5fr;gap:32px;align-items:center;padding:42px 0;border-top:1px solid rgba(255,255,255,0.12);border-bottom:1px solid rgba(255,255,255,0.12);transition:background .3s ease;" style-hover="background:rgba(239,81,48,0.05)">
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <span style="font-family:'Fragment Mono',monospace;font-size:11px;letter-spacing:0.18em;color:rgba(255,255,255,0.4);text-transform:uppercase;">Шаг</span>
+          <span style="font-family:'Oswald',sans-serif;font-weight:700;font-size:64px;line-height:0.82;color:#EF5130;">03</span>
+        </div>
+        <h3 style="margin:0;color:#fff;font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(22px,2.4vw,30px);text-transform:uppercase;letter-spacing:0.01em;line-height:1.05;">Запуск и поддержка</h3>
+        <p style="margin:0;color:rgba(255,255,255,0.66);font-size:16px;line-height:1.55;">Отдаём готовые материалы и остаёмся на связи, пока всё не заработает.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" data-screen-label="Контакт" style="position:relative;background:radial-gradient(58% 80% at 86% 50%,rgba(239,81,48,0.16) 0%,rgba(239,81,48,0) 60%),linear-gradient(180deg,#05382a 0%,#021c15 100%);padding:120px 24px 130px;display:flex;justify-content:center;">
+    <div class="cta-row" style="width:100%;max-width:1080px;display:flex;gap:64px;align-items:center;flex-wrap:wrap;">
+
+      <div style="flex:1 1 380px;min-width:300px;">
+        <div style="display:inline-flex;align-items:center;gap:9px;margin:0 0 24px;">
+          <span style="font-family:'Fragment Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#0d0d0d;background:#EF5130;padding:5px 9px;border-radius:5px;text-transform:uppercase;line-height:1;">SEC&nbsp;05</span>
+          <span style="font-family:'Fragment Mono',monospace;font-size:12px;letter-spacing:0.16em;color:#EF5130;text-transform:uppercase;line-height:1;">КОНТАКТ</span>
+        </div>
+        <h2 style="margin:0 0 24px;color:#fff;font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(40px,5.4vw,64px);letter-spacing:0.005em;line-height:1.0;text-transform:uppercase;">Оформи пропуск<br>к бренду, который <span style="color:#EF5130;">невозможно игнорировать</span></h2>
+        <p style="margin:0 0 36px;max-width:480px;color:rgba(255,255,255,0.7);font-weight:400;font-size:18px;line-height:1.55;">Один шаг — написать нам. Расскажи о задаче, остальное за нами.</p>
+        <button onClick="{{ contact }}" style="background:#EF5130;border:none;border-radius:14px;cursor:pointer;color:#0d0d0d;font-family:'Oswald',sans-serif;font-weight:700;font-size:19px;line-height:1;text-transform:uppercase;letter-spacing:0.03em;padding:19px 40px;transition:transform .25s ease;" style-hover="transform:scale(1.04)">Написать нам</button>
+        <p style="margin:26px 0 0;font-family:'Fragment Mono',monospace;font-size:13px;letter-spacing:0.08em;color:rgba(255,255,255,0.5);">hello@peachdesign.art</p>
+      </div>
+
+      <div style="flex:1 1 320px;min-width:300px;display:flex;justify-content:center;">
+        <div style="position:relative;display:flex;flex-direction:column;align-items:center;transform:rotate(-3deg);">
+          <div style="width:46px;height:128px;background:#EF5130;writing-mode:vertical-rl;text-orientation:mixed;display:flex;align-items:center;justify-content:center;color:#0d0d0d;font-family:'Fragment Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.34em;text-transform:uppercase;">peach.studio</div>
+          <div style="width:24px;height:34px;background:#1a1a1a;border:1px solid #383838;border-radius:5px;margin-top:-8px;margin-bottom:-12px;position:relative;z-index:5;"></div>
+          <div style="position:relative;width:296px;border-radius:22px;background:#0a3a2b;border:1px solid rgba(255,255,255,0.13);padding:28px 18px 18px;box-shadow:0 34px 70px rgba(0,0,0,0.65);z-index:4;">
+            <div style="position:absolute;top:12px;left:50%;transform:translateX(-50%);width:46px;height:9px;border-radius:9px;background:#033929;border:1px solid #2c2c2c;"></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+              <span style="color:#fff;font-family:'Inter',sans-serif;font-weight:600;font-size:18px;letter-spacing:-0.01em;">peach<span style="color:#EF5130;">.lab</span></span>
+              <span style="width:30px;height:30px;border-radius:7px;background:#EF5130;display:flex;align-items:center;justify-content:center;color:#0d0d0d;font-family:'Oswald',sans-serif;font-weight:700;font-size:18px;">P</span>
+            </div>
+            <div style="position:relative;aspect-ratio:1/1.05;border-radius:12px;overflow:hidden;background:#161616 url('assets/founder.png') center/cover no-repeat;filter:grayscale(1) contrast(1.1);"></div>
+            <div style="background:#ededed;border-radius:8px;margin-top:14px;padding:11px 12px 12px;display:flex;gap:10px;">
+              <div style="flex:1;min-width:0;">
+                <p style="margin:0 0 7px;font-family:'Fragment Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.04em;color:#0d0d0d;text-transform:uppercase;">Директор по дизайну</p>
+                <div style="display:flex;gap:14px;margin-bottom:6px;">
+                  <div><div style="font-family:'Fragment Mono',monospace;font-size:7px;letter-spacing:0.1em;color:#8a8a8a;text-transform:uppercase;">Имя</div><div style="font-family:'Fragment Mono',monospace;font-size:11px;font-weight:700;color:#0d0d0d;">PE/ACH</div></div>
+                  <div><div style="font-family:'Fragment Mono',monospace;font-size:7px;letter-spacing:0.1em;color:#8a8a8a;text-transform:uppercase;">Сектор</div><div style="font-family:'Fragment Mono',monospace;font-size:11px;font-weight:700;color:#0d0d0d;">01</div></div>
+                </div>
+                <div style="display:flex;gap:14px;margin-bottom:9px;">
+                  <div><div style="font-family:'Fragment Mono',monospace;font-size:7px;letter-spacing:0.1em;color:#8a8a8a;text-transform:uppercase;">Код</div><div style="font-family:'Fragment Mono',monospace;font-size:11px;font-weight:700;color:#0d0d0d;">0884105</div></div>
+                  <div><div style="font-family:'Fragment Mono',monospace;font-size:7px;letter-spacing:0.1em;color:#8a8a8a;text-transform:uppercase;">Ед</div><div style="font-family:'Fragment Mono',monospace;font-size:11px;font-weight:700;color:#0d0d0d;">001599951</div></div>
+                </div>
+                <div style="height:22px;background:repeating-linear-gradient(90deg,#0d0d0d 0 1px,transparent 1px 3px,#0d0d0d 3px 5px,transparent 5px 6px,#0d0d0d 6px 8px,transparent 8px 11px);"></div>
+              </div>
+              <div style="position:relative;width:54px;height:54px;background:#fff;flex:none;padding:3px;">
+                <div style="width:100%;height:100%;background-image:repeating-conic-gradient(#0d0d0d 0% 25%,#fff 0% 50%);background-size:6px 6px;"></div>
+                <div style="position:absolute;top:3px;left:3px;width:14px;height:14px;background:#fff;box-shadow:0 0 0 3px #0d0d0d inset;"></div>
+                <div style="position:absolute;top:3px;right:3px;width:14px;height:14px;background:#fff;box-shadow:0 0 0 3px #0d0d0d inset;"></div>
+                <div style="position:absolute;bottom:3px;left:3px;width:14px;height:14px;background:#fff;box-shadow:0 0 0 3px #0d0d0d inset;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900},&quot;autoplay&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;intervalSec&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:4,&quot;min&quot;:2,&quot;max&quot;:10,&quot;tsType&quot;:&quot;number&quot;}}">
+class Component extends DCLogic {
+  state = { active: 2, hover: false, hoverCard: -1, menuOpen: false };
+
+  componentDidMount() { this.schedule(); }
+  componentWillUnmount() { this.stop(); }
+  secs() { const p = this.props || {}; return Math.max(2, p.intervalSec ?? 4); }
+  schedule() { this.stop(); this._t = setTimeout(() => this.tick(), this.secs() * 1000); }
+  tick() {
+    const p = this.props || {};
+    if ((p.autoplay ?? true) && !this.state.hover) {
+      this.setState(s => ({ active: (s.active + 1) % 5 }));
+    }
+    this._t = setTimeout(() => this.tick(), this.secs() * 1000);
+  }
+  stop() { if (this._t) { clearTimeout(this._t); this._t = null; } }
+  go(i) { this.setState({ active: i }); }
+  scrollToId(id) {
+    if (this.state.menuOpen) this.setState({ menuOpen: false });
+    const el = document.getElementById(id);
+    if (!el) return;
+    const y = id === 'top' ? 0 : el.getBoundingClientRect().top + window.pageYOffset - 40;
+    window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+  }
+
+  renderVals() {
+    const cols = 5, rows = 6;
+    const rnd = (s) => { const x = Math.sin(s * 99.13) * 43758.5453; return x - Math.floor(x); };
+    const shards = [];
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+      const i = r * cols + c;
+      const jx = (rnd(i + 1) - 0.5) * 3.4;
+      const jy = (rnd(i + 7) - 0.5) * 3.4;
+      const rot = (rnd(i + 13) - 0.5) * 2.4;
+      const px = (c / (cols - 1)) * 100;
+      const py = (r / (rows - 1)) * 100;
+      const bright = (0.86 + rnd(i + 3) * 0.3).toFixed(2);
+      shards.push({ style: `background-image:url('assets/founder.png');background-size:${cols * 100}% ${rows * 100}%;background-position:${px}% ${py}%;background-repeat:no-repeat;filter:grayscale(1) contrast(1.18) brightness(${bright});transform:translate(${jx.toFixed(2)}px,${jy.toFixed(2)}px) rotate(${rot.toFixed(2)}deg);box-shadow:inset 0 0 0 0.5px rgba(255,255,255,0.06);` });
+    }
+
+    const imgs = [
+      'assets/sec01-1.png',
+      'assets/sec01-2.jpg',
+      'assets/sec01-3.jpg',
+      'assets/sec01-4.jpg',
+      'assets/sec01-5.jpg'
+    ];
+    const tf = {
+      '-2': 'translateX(-360px) translateY(120px) scale(0.75) rotate(-16deg)',
+      '-1': 'translateX(-180px) translateY(60px) scale(0.8) rotate(-8deg)',
+      '0':  'translateX(0px) translateY(0px) scale(1) rotate(0deg)',
+      '1':  'translateX(180px) translateY(60px) scale(0.8) rotate(8deg)',
+      '2':  'translateX(360px) translateY(120px) scale(0.75) rotate(16deg)'
+    };
+    const base = 'position:absolute;left:50%;top:50%;width:400px;height:500px;margin-left:-200px;margin-top:-250px;border-radius:40px;overflow:hidden;cursor:pointer;box-shadow:rgba(0,0,0,0.5) 0px 10px 30px;transition:transform 0.6s cubic-bezier(.22,.61,.36,1),opacity 0.6s ease;';
+    const active = this.state.active;
+
+    const cards = imgs.map((img, i) => {
+      let p = i - active;
+      if (p > 2) p -= 5;
+      if (p < -2) p += 5;
+      const z = p === 0 ? 5 : (Math.abs(p) === 1 ? 4 : 3);
+      const op = Math.abs(p) === 2 ? 0.92 : 1;
+      return { onClick: () => this.go(i), style: base + `background:#1a1a1a url('${img}') center/cover no-repeat;transform:${tf[String(p)]};z-index:${z};opacity:${op};` };
+    });
+
+    const dots = imgs.map((_, i) => ({
+      onClick: () => this.go(i),
+      style: `width:${i === active ? '28px' : '8px'};height:8px;border-radius:99px;border:none;cursor:pointer;padding:0;transition:all .4s ease;background:${i === active ? '#EF5130' : 'rgba(255,255,255,0.28)'};`
+    }));
+
+    const hov = this.state.hoverCard;
+    const sheen = (i) => `position:absolute;top:-25%;left:0;width:55%;height:150%;pointer-events:none;z-index:1;background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,0.16) 50%,rgba(255,255,255,0) 100%);transform:translateX(${hov === i ? '245%' : '-160%'}) skewX(-18deg);transition:transform .85s cubic-bezier(.22,.61,.36,1);`;
+
+    return {
+      cards, dots, shards,
+      menuOpen: this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      svcEnter0: () => this.setState({ hoverCard: 0 }),
+      svcEnter1: () => this.setState({ hoverCard: 1 }),
+      svcEnter2: () => this.setState({ hoverCard: 2 }),
+      svcLeave: () => this.setState({ hoverCard: -1 }),
+      sheen0: sheen(0), sheen1: sheen(1), sheen2: sheen(2),
+      onEnter: () => this.setState({ hover: true }),
+      onLeave: () => this.setState({ hover: false }),
+      navHome: () => this.scrollToId('top'),
+      navAbout: () => this.scrollToId('about'),
+      navProjects: () => this.scrollToId('cases'),
+      navJournal: () => this.scrollToId('process'),
+      contact: () => { window.location.href = 'mailto:hello@peachdesign.art?subject=' + encodeURIComponent('Обсудить проект — Peach Design Studio'); }
+    };
+  }
+}
+</script>
+</body>
+</html>
